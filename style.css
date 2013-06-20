@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+input[type='text'],
+input[type='number'] {
+    padding: 3px;
+    border: 1px solid #ccc;
+    width: 30px;
+    height: 20px;
+}
+
+button,
+input[type='button'],
+input[type='submit']{
+    border-radius: 8px;
+    border: 1px solid #900;
+    padding: 3px 5px;
+    background-color: #b00;
+    color: #fff;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+button:active,
+input[type='button']:active,
+input[type='submit']:active {
+    background-color: #900;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+#content {}
+
+#console {}
+
+#settings {
+    float: right;
+    width: 30%;
+    height: 100%;
+    padding: 20px 25px;
+    border: 1px solid #ccc;
+}
+
+#matrix-values input[type='text'],
+#matrix-values input[type='number'] {
+    width: 50px;
+}
+
+#matrix-values .variable,
+#matrix-values .operator{
+    padding: 0px 5px;
+    font-family: serif;
+    font-size: large;
+    font-weight: bold;
+    font-style: italic;
+}

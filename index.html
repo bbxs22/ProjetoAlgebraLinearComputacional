@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Álgebra Linear</title>
+        <link rel="stylesheet" href="style.css" type="text/css" media="screen" /> 
+        <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="script.js"></script>
+    </head> 
+    
+    <body>
+        <h1>Álgebra Linear</h1>
+        <div id="content"></div>
+        <div id="console"></div>
+        <section id="settings">
+            <h2>Matriz</h2>
+            <div id="matrix-settings">
+                <input type="number" id="rows" name="rows" title="Linhas" min="1" max="5"> x <input type="number" id="columns" name="columns" title="Colunas" min="1" max="5">
+                <input type="button" name="buttonOk" value="Ok" onclick="loadMatrix();">
+                <input type="button" name="buttonClear" value="Clear" onclick="clearMatrix();">
+            </div>
+            
+            <div id="matrix-values"></div>
+            
+            <input type="button" name="run" value="Run">
+            <input type="button" name="run-setp" value="Step-by-step">
+        </section>
+    </body>
+</html>
