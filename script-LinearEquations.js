@@ -1,6 +1,12 @@
 var Util = Util || {};
 var LinearEquations = LinearEquations || {};
 
+LinearEquations.options = { 'class' : 'lineq-content',
+                            'parent' : '#content', 
+                            'debugModeOn' : true, 
+                            'location' : function(){return LinearEquations.options.parent + ' .' + LinearEquations.options.class;}
+                          };
+
 LinearEquations.ready = function() {
     jQuery('#lineq-settings #buttonOk').hide();
     jQuery('#lineq-settings #buttonReset').hide();
@@ -35,6 +41,38 @@ LinearEquations.ready = function() {
     jQuery('#lineq-settings #buttonClear').click(function(){
         LinearEquations.clear();
     });
+};
+
+LinearEquations.show = function(matrix) {
+    var content = LinearEquations.options.location();
+    
+    jQuery(LinearEquations.options.parent).prepend('<div class="' + LinearEquations.options.class + ' algorithm-result"></div>');
+    
+    for (var i = 1; i <= matrix.rows; i++) {
+        var row_element = jQuery('<div class="row"></div>');
+        
+        for (var j = 1; j <= matrix.columns - 2; j++) {
+            var element = jQuery('<div class="row-element"></div>');
+            jQuery(element).append('<span class="value">' + matrix.get(i, j) + '</span>');
+            jQuery(element).append('<span class="variable">x<span class="subscript">' + i + '' + j + '</span>');
+            jQuery(element).append('<span class="operator">+</span>');
+            jQuery(row_element).append(element);
+        }
+        
+        var j = matrix.columns - 1;
+        var element = jQuery('<div class="row-element"></div>');
+        jQuery(element).append('<span class="value">' + matrix.get(i, j) + '</span>');
+        jQuery(element).append('<span class="variable">x<span class="subscript">' + i + '' + j + '</span>');
+        jQuery(element).append('<span class="operator">=</span>');
+        jQuery(row_element).append(element);
+        
+        j = matrix.columns;
+        element = jQuery('<div class="row-element"></div>');
+        jQuery(element).append('<span class="value">' + matrix.get(i, j) + '</span>');
+        jQuery(row_element).append(element);
+        
+        jQuery(content).first().append(row_element);
+    }
 };
 
 LinearEquations.generateId = function(item, i, j) {

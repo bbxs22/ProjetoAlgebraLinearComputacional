@@ -2,13 +2,20 @@ var Util = Util || {};
 var LinearEquations = LinearEquations || {};
 var GaussianElimination = GaussianElimination || {};
 
-GaussianElimination.options = { 'applyPivoting' : false, 'debugModeOn' : true };
+GaussianElimination.options = { 'class' : 'gausselim-content',
+                                'parent' : '#content', 
+                                'applyPivoting' : false,
+                                'debugModeOn' : true, 
+                                'location' : function(){return GaussianElimination.options.parent + ' .' + GaussianElimination.options.class;}
+                              };
 
 GaussianElimination.ready = function() {    
     jQuery('#gausselim-settings #buttonRun').click(function() {
         var matrix = LinearEquations.getAugmentedMatrix();
         GaussianElimination.run(matrix);
     });
+    
+    LinearEquations.options.parent = GaussianElimination.options.parent;
 };
 
 GaussianElimination.run = function(matrix, pause) {
@@ -24,14 +31,14 @@ GaussianElimination.debug = function(message) {
 };
 
 GaussianElimination.showLinearEquations = function(matrix) {
-    GaussianElimination.show(matrix);
-    jQuery('#content .gausselim-content').first().addClass('lineq')
-    jQuery('#content .gausselim-content').first().find('.icons').remove();
-    jQuery('#content .gausselim-content').first().hide();
+    LinearEquations.show(matrix);
+    jQuery(LinearEquations.options.location()).first().hide();
 };
 
 GaussianElimination.show = function(matrix) {
-    jQuery('#content').prepend('<div class="gausselim-content algorithm-result"></div>');
+    var content = GaussianElimination.options.location();
+    
+    jQuery(GaussianElimination.options.parent).prepend('<div class="' + GaussianElimination.options.class + ' algorithm-result"></div>');
     
     for (var i = 1; i <= matrix.rows; i++) {
         var row_element = jQuery('<div class="row"></div>');
@@ -56,12 +63,12 @@ GaussianElimination.show = function(matrix) {
         jQuery(element).append('<span class="value">' + matrix.get(i, j) + '</span>');
         jQuery(row_element).append(element);
         
-        jQuery('#content .gausselim-content').first().append(row_element);
+        jQuery(content).first().append(row_element);
         
     }
-    jQuery('#content .gausselim-content').first().prepend('<div class="icons"></div>')
+    jQuery(content).first().prepend('<div class="icons"></div>')
     
-    jQuery('#content .gausselim-content').first().find('.icons').append(
+    jQuery(content).first().find('.icons').append(
         jQuery('<a href="#" class="delete"></a>').click(function() {
             console.log(jQuery(this));
             jQuery(this).parent().parent().next().remove();

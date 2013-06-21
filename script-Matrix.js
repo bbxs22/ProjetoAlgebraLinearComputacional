@@ -1,6 +1,12 @@
 var Util = Util || {};
 var Matrix = Matrix || {};
 
+Matrix.options = { 'class' : 'matrix-content',
+                   'parent' : '#content', 
+                   'debugModeOn' : true, 
+                   'location' : function(){return Matrix.options.parent + ' .' + Matrix.options.class;}
+                 };
+
 Matrix.ready = function() {
     jQuery('#matrix-settings #buttonOk').hide();
     jQuery('#matrix-settings #buttonReset').hide();
@@ -34,13 +40,14 @@ Matrix.ready = function() {
     
     jQuery('#matrix-settings #buttonClear').click(function(){
         //Matrix.show( Matrix.getMatrix() );
-        //jQuery('#content .matrix-content').addClass('algorithm-result');
         Matrix.clear();
     });
 };
 
 Matrix.show = function(matrix) {
-    jQuery('#content').prepend('<div class="matrix-content"></div>');
+    var content = Matrix.options.location();
+    
+    jQuery(Matrix.options.parent).prepend('<div class="' + Matrix.options.class + ' algorithm-result"></div>');
     
     for (var i = 1; i <= matrix.rows; i++) {
         var row_element = jQuery('<div class="row"></div>');
@@ -51,7 +58,7 @@ Matrix.show = function(matrix) {
             jQuery(row_element).append(element);
         }
         
-        jQuery('#content .matrix-content').first().append(row_element);
+        jQuery(content).first().append(row_element);
     }
 };
 
