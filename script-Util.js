@@ -9,7 +9,7 @@ Util.debug = function(message) {
         console.log(message);
 };
 
-function Matrix(rows, columns) {
+Util.Matrix = function(rows, columns) {
     this.rows = rows;
     this.columns = columns;
     this.values = [];

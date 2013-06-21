@@ -1,3 +1,4 @@
+var Util = Util || {};
 var LinearEquations = LinearEquations || {};
 
 LinearEquations.ready = function() {
@@ -182,7 +183,7 @@ LinearEquations.getAB = function(i, j) {
 };
 
 LinearEquations.getAugmentedMatrix = function() {
-    var matrix = new Matrix(LinearEquations.getRows(), LinearEquations.getColumns() + 1);
+    var matrix = new Util.Matrix(LinearEquations.getRows(), LinearEquations.getColumns() + 1);
     
     for (var i = 1; i <= LinearEquations.getRows(); i++) {
         for (var j = 1; j <= LinearEquations.getColumns() + 1; j++){
