@@ -34,10 +34,10 @@ GaussianElimination.show = function(matrix) {
     jQuery('#content').prepend('<div class="gausselim-content algorithm-result"></div>');
     
     for (var i = 1; i <= matrix.rows; i++) {
-        var row_element = jQuery('<div class="gausselim-row"></div>');
+        var row_element = jQuery('<div class="row"></div>');
         
         for (var j = 1; j <= matrix.columns - 2; j++) {
-            var element = jQuery('<div class="gausselim-row-element"></div>');
+            var element = jQuery('<div class="row-element"></div>');
             jQuery(element).append('<span class="value">' + matrix.get(i, j) + '</span>');
             jQuery(element).append('<span class="variable">x<span class="subscript">' + i + '' + j + '</span>');
             jQuery(element).append('<span class="operator">+</span>');
@@ -45,14 +45,14 @@ GaussianElimination.show = function(matrix) {
         }
         
         var j = matrix.columns - 1;
-        var element = jQuery('<div class="gausselim-row-element"></div>');
+        var element = jQuery('<div class="row-element"></div>');
         jQuery(element).append('<span class="value">' + matrix.get(i, j) + '</span>');
         jQuery(element).append('<span class="variable">x<span class="subscript">' + i + '' + j + '</span>');
         jQuery(element).append('<span class="operator">=</span>');
         jQuery(row_element).append(element);
         
         j = matrix.columns;
-        element = jQuery('<div class="gausselim-row-element"></div>');
+        element = jQuery('<div class="row-element"></div>');
         jQuery(element).append('<span class="value">' + matrix.get(i, j) + '</span>');
         jQuery(row_element).append(element);
         

@@ -1,11 +1,3 @@
-.gausselim-content .gausselim-row {
-    margin: 5px 0px 10px 0px;
-}
-
-.gausselim-content .gausselim-row-element {
-    display: inline-block;
-}
-
 .gausselim-content.lineq {
     background-color: #fcfcfc;
     border: 1px solid #eee;

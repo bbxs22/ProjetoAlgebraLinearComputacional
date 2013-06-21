@@ -56,7 +56,7 @@ LinearEquations.load = function() {
     };
     
     var createAxElements = function(i, j, last) {
-        var element = jQuery('<div id="' + getId('element', i, j) + '" class="lineq-row-element"></div>');
+        var element = jQuery('<div id="' + getId('element', i, j) + '" class="row-element"></div>');
         
         jQuery(element).append('<input type="number" id="' + getId('a', i, j) + '" name="' + getId('a', i, j) + '">');
         jQuery(element).append('<label for="' + getId('a', i, j) + '" class="variable">x<span class="subscript">' + i + '' + j + '</span></label>');
@@ -72,14 +72,14 @@ LinearEquations.load = function() {
     };
 
     var createBElements = function(i) {
-        var element = jQuery('<div id="' + getId('element', i) + '" class="lineq-row-element"></div>');
+        var element = jQuery('<div id="' + getId('element', i) + '" class="row-element"></div>');
         jQuery(element).append('<input type="number" id="' + getId('b', i) + '" name="' + getId('b', i) + '">');
         return element;
     };
 
     var addRowElements = function(startRow, endRow, totalColumns) {
         for (var i = startRow; i <= endRow; i++) {
-            var row_element = jQuery('<div class="lineq-row"></div>');
+            var row_element = jQuery('<div class="row"></div>');
             
             var j = 1;
             while (j < totalColumns) {
@@ -96,7 +96,7 @@ LinearEquations.load = function() {
 
     var removeRowElements = function(startRow, endRow) {
         for (var i = 0; i < (endRow - startRow); i++)
-            jQuery('#lineq-values .lineq-row').get(startRow).remove();
+            jQuery('#lineq-values .row').get(startRow).remove();
     };
 
     var addColumnElements = function(startColumn, endColumn, totalRows) {
@@ -105,7 +105,7 @@ LinearEquations.load = function() {
             
         for (var i = 1; i <= totalRows; i++) {
 
-            jQuery(jQuery('#lineq-values .lineq-row').get(i - 1)).find('.operator').last().text('+');
+            jQuery(jQuery('#lineq-values .row').get(i - 1)).find('.operator').last().text('+');
             
             var j = startColumn;
             while (j < endColumn) {
@@ -121,16 +121,16 @@ LinearEquations.load = function() {
             for (var j = startColumn; j <= endColumn; j++) {
                 jQuery('#' + getId('element', i, j)).remove();
             }
-            jQuery(jQuery('#lineq-values .lineq-row').get(i - 1)).find('.operator').last().text('=');
+            jQuery(jQuery('#lineq-values .row').get(i - 1)).find('.operator').last().text('=');
         }
     };
 
     var rows = LinearEquations.getRows();
     var columns = LinearEquations.getColumns();
     
-    if (jQuery('#lineq-values .lineq-row').size() !== 0) {
-        var curr_rows = parseInt(jQuery('#lineq-values .lineq-row').last().find('.variable').first().text().split('')[1]);
-        var curr_columns = parseInt(jQuery('#lineq-values .lineq-row').first().find('.variable').last().text().split('')[2]);
+    if (jQuery('#lineq-values .row').size() !== 0) {
+        var curr_rows = parseInt(jQuery('#lineq-values .row').last().find('.variable').first().text().split('')[1]);
+        var curr_columns = parseInt(jQuery('#lineq-values .row').first().find('.variable').last().text().split('')[2]);
         
         removeRowElements(rows, curr_rows);
         removeColumnElements(columns + 1, curr_columns, rows);
@@ -158,7 +158,7 @@ LinearEquations.reset = function() {
     jQuery('#lineq-settings .warning').show();
     jQuery('#lineq-settings input[name=rows]').val('');
     jQuery('#lineq-settings input[name=columns]').val('');
-    jQuery('#lineq-values .lineq-row').remove();
+    jQuery('#lineq-values .row').remove();
 };
 
 LinearEquations.getA = function(i, j) {
