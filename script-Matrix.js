@@ -117,7 +117,7 @@ Matrix.load = function() {
     var removeColumnElements = function(startColumn, endColumn, totalRows) {
         for (var i = 1; i <= totalRows; i++) {
             for (var j = startColumn; j <= endColumn; j++) {
-                jQuery('#' + getId('a', i, j)).remove();
+                jQuery('#' + getId('element', i, j)).remove();
             }
         }
     };
